@@ -53,7 +53,7 @@ struct ReviewView: View {
                                 print(error)
                             }
                         }
-                        //saveImage()
+                        saveImage()
                         appData.showingDoneScreen = true
                         #else
                         func pngFrom(image: UIImage) -> UIImage {
@@ -81,6 +81,7 @@ struct ReviewView: View {
                     .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.05)
                     Spacer()
                 }
+                .blur(radius: appData.showingDoneScreen ? appData.alertBackgroundViewBlur : 0.0)
                 // Save Options
                 if appData.showingSizeOptions {
                     ImageSizeView()
@@ -96,6 +97,7 @@ struct ReviewView: View {
                         .environmentObject(appData)
                 }
             }
+            
         }
     }
     

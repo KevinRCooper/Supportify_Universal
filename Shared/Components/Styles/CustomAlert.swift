@@ -17,8 +17,14 @@ struct CustomAlert: View {
             VStack {
                 Spacer()
                     .frame(height: geometry.size.height * 0.05)
+                #if os(macOS)
+                Banner(title: "Image Saved!")
+                    .frame(width: geometry.size.width * 0.95)
+                #else
                 Banner(title: "Image Saved!", subTitle: "Go to your photo album to see your new profile image")
                     .frame(width: geometry.size.width * 0.95)
+                #endif
+                    
                 Divider()
                 Spacer()
                 Button {

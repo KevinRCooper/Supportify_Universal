@@ -10,40 +10,77 @@ import SwiftUI
 struct ViewRouter: View {
     @EnvironmentObject var appData: AppData
     @EnvironmentObject var navData: NavData
-#if !os(macOS)
-init() {
-    // Haptic Feedback
-    let generator = UIImpactFeedbackGenerator()
-    generator.prepare()
-    generator.impactOccurred(intensity: 0.7)
-}
-#endif
+    @State var showingLaunchScreen: Bool = true
+    #if !os(macOS)
+    init() {
+        // Haptic Feedback
+        let generator = UIImpactFeedbackGenerator()
+        generator.prepare()
+        generator.impactOccurred(intensity: 0.7)
+    }
+    #endif
+    
+    @Sendable private func delayView() async {
+        // Delay of 7.5 seconds (1 second = 1_000_000_000 nanoseconds)
+        try? await Task.sleep(nanoseconds: 7_500_000_000)
+        showingLaunchScreen = false
+    }
+    
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                #if os(macOS)
-                LandscapeViewWrapper()
-                    .environmentObject(appData)
-                    .environmentObject(navData)
-                #else
-                if UIDevice.isIpad && geometry.size.width > geometry.size.height {
+        if showingLaunchScreen {
+            GeometryReader { geometry in
+                ZStack {
+                    HeartsAnimation()
+                        .task(delayView)
+                    VStack {
+                       Spacer()
+                        Image("Logo_Transparent")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: geometry.size.width * 0.5, height: geometry.size.height * 0.5)
+                    }
+                    .edgesIgnoringSafeArea(.bottom)
+                    HeartsAnimation()
+                        .task(delayView)
+                    
+                }
+                .onTapGesture {
+                    showingLaunchScreen = false
+                    #if os(iOS)
+                    Haptics.shared.play(.medium)
+                    #endif
+                }
+                .appBackground()
+            }
+            
+        } else {
+            GeometryReader { geometry in
+                ZStack {
+                    #if os(macOS)
                     LandscapeViewWrapper()
                         .environmentObject(appData)
                         .environmentObject(navData)
-                } else {
-                    PortraitViewWrapper()
-                        .environmentObject(appData)
-                        .environmentObject(navData)
+                    #else
+                    if UIDevice.isIpad && geometry.size.width > geometry.size.height {
+                        LandscapeViewWrapper()
+                            .environmentObject(appData)
+                            .environmentObject(navData)
+                    } else {
+                        PortraitViewWrapper()
+                            .environmentObject(appData)
+                            .environmentObject(navData)
+                    }
+                    #endif
                 }
-                #endif
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .onAppear() {
+                    print("Refreshed View!")
+                }
+                
+                .appBackground()
             }
-            .frame(width: geometry.size.width, height: geometry.size.height)
-            .onAppear() {
-                print("Refreshed View!")
-            }
-            
-            .appBackground()
         }
+       
         
     }
 }

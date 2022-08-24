@@ -94,7 +94,9 @@ struct FlagSelectionView: View {
                 Spacer()
                 Button {
                     navData.navigationSelection = "Image Overlay"
+                    #if os(iOS)
                     Haptics.shared.play(.medium)
+                    #endif
                     //appData.hasImageBeenSelected = false
                 } label: {
                     Text("Image Overlay \(Image(systemName: "person.circle"))")

@@ -8,17 +8,21 @@
 import SwiftUI
 
 class AppData: ObservableObject {
+    // MARK: - Navigation
     @Published var showingNavBar: Bool = true
-    @Published var hasImageBeenSelected: Bool = false
+    // Tracks if side-bar navigation is loaded to fix the text preview
+    @Published var sidebarNavigationInView: Bool = false
+    // Tracks if Overlay Options screen has been seen
+    @Published var userSeenOverlayScreen: Bool = false
     
+    // MARK: - LGBTQ+ Identification
     // Community Identification Choices
-    @Published var communityIdentificationChoice: Array = ["LGBTQ+", "LGBTQ+ Ally"]
+    @Published var communityIdentificationChoice: Array = [NSLocalizedString("LGBTQ+", comment: ""), NSLocalizedString("LGBTQ+ Ally", comment: "")]
     // Community Identification Selected Choice
     @Published var communityIdentification = "LGBTQ+"
-    // Image Move Type Choices
-    @Published var imageMoveChoice: Array = ["Drag","Advanced"]
-    // Image Move Type Selection
-    @Published var imageMove: String = "Drag"
+
+    // MARK: - Image Handling
+    @Published var hasImageBeenSelected: Bool = false
     // Image Position Offsets, Zoom, and Finger Locations
     @Published var imageXOffset : Double = 0.0
     @Published var imageYOffset : Double = 0.0
@@ -29,24 +33,19 @@ class AppData: ObservableObject {
     @Published var outputImageSize: CGPoint = CGPoint(x: 500, y: 500)
     @Published var showingSizeOptions: Bool = false
     @Published var showingDoneScreen: Bool = false
-    //@Published var location: CGPoint = CGPoint(x: NSScreen.main!.frame.width / 5, y: NSScreen.main!.frame.width / 5)
-    //@Published var circleLocation: CGPoint = CGPoint(x: NSScreen.main!.frame.width / 2, y: NSScreen.main!.frame.width / 2)
-    //@Published var location: CGPoint = CGPoint(x: UIScreen.main.bounds.width/3, y: UIScreen.main.bounds.width/3)
-    //@Published var circleLocation: CGPoint = CGPoint(x: UIScreen.main.bounds.width/3, y: UIScreen.main.bounds.width/3)
     // Stores Image Outline Stroke
     @Published var imageDisplayLineWidth: CGFloat = 5
     // Image Display Choice Selection Array
-    @Published var imageDisplayChoice : Array = ["Banner","Circle Gradient"]
+    @Published var imageDisplayChoice : Array = [NSLocalizedString("Banner", comment: ""), NSLocalizedString("Circle Gradient", comment: "")]
     // Stores the Image Choice Selection
     @Published var imageDisplay: String = "Banner"
-    // Tracks if side-bar navigation is loaded to fix the text preview
-    @Published var sidebarNavigationInView: Bool = false
-    // Tracks if Overlay Options screen has been seen
-    @Published var userSeenOverlayScreen: Bool = false
+    
+    // MARK: - Alerts
     // Showing Save Alert
     @Published var showingSaveAlert: Bool = false
     // Blur for Alert
     @Published var alertBackgroundViewBlur: Double = 20.0
+    
     #if !os(macOS)
     // Photo Picker Source Type
     @Published var sourceType: UIImagePickerController.SourceType = .photoLibrary
@@ -60,7 +59,7 @@ class AppData: ObservableObject {
     @Published var selectedImage: NSImage?
     
     
-    //MARK: - Open Image
+    //MARK: - Open Image on macOS
     func openImage() {
         let openPanel = NSOpenPanel()
         openPanel.prompt = "Select File"
@@ -80,21 +79,22 @@ class AppData: ObservableObject {
         }
     }
     
-    //MARK: - Save Panel
+    //MARK: - Save Panel on macOS
     func showSavePanel() -> URL? {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [.png]
         savePanel.canCreateDirectories = true
         savePanel.isExtensionHidden = false
-        savePanel.title = "Save your image"
-        savePanel.message = "Choose a folder and a name to store the image."
-        savePanel.nameFieldLabel = "Image file name:"
-        savePanel.nameFieldStringValue = "ProfileImage"
+        savePanel.title = NSLocalizedString("Save your image", comment: "")
+        savePanel.message = NSLocalizedString("Choose a folder and a name to store the image.", comment: "")
+        savePanel.nameFieldLabel = NSLocalizedString("Image file name:", comment: "")
+        savePanel.nameFieldStringValue = NSLocalizedString("ProfileImage", comment: "")
         
         let response = savePanel.runModal()
         return response == .OK ? savePanel.url : nil
     }
-    //MARK: - Save Image
+    
+    //MARK: - Save Image on macOS
     func saveImage(appData: AppData) {
         let path = showSavePanel()
         self.outputImage = ImageOverlayWrapper().environmentObject(appData).snapshot()
@@ -108,33 +108,34 @@ class AppData: ObservableObject {
         }
     }
     #endif
+    
     // MARK: - Flag Selection
-    @Published var selectedFlagName = "6-Color Pride Flag"
+    @Published var selectedFlagName = NSLocalizedString("6-Color Pride Flag", comment: "")
     
     // Flag List
     @Published var flagsList : [Flags] = [
         Flags(id: 0,
-              name: "Gilbert Pride Flag",
+              name: NSLocalizedString("Gilbert Pride Flag", comment: ""),
               image: "Gilbert_Pride_Flag",
               selected: false
              ),
         Flags(id: 1,
-              name: "6-Color Pride Flag",
+              name: NSLocalizedString("6-Color Pride Flag", comment: ""),
               image: "6-Color_Pride_Flag",
               selected: true
              ),
         Flags(id: 2,
-              name: "Philadelphia Pride Flag",
+              name: NSLocalizedString("Philadelphia Pride Flag", comment: ""),
               image: "Philadelphia_Pride_Flag",
               selected: false
              ),
         Flags(id: 3,
-              name: "Transgender Pride Flag",
+              name: NSLocalizedString("Transgender Pride Flag", comment: ""),
               image: "Transgender_Pride_Flag",
               selected: false
              ),
         Flags(id: 4,
-              name: "Progress Pride Flag",
+              name: NSLocalizedString("Progress Pride Flag", comment: ""),
               image: "Progress_Pride_Flag",
               selected: false
              )
