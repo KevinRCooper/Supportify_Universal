@@ -110,9 +110,6 @@ struct NavigationSideBarViewReviewLater: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                // Collapse Button
-                
-                // Banner
                 
                 // Navigation Items
                 Menu {

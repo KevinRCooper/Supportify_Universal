@@ -14,15 +14,25 @@ import SwiftUI
 struct ReviewCounter: ViewModifier {
     /// Counter of events that would lead to a review being asked for.
     @AppStorage("review.counter") private var reviewCounter = 0
+    @AppStorage("review.version") private var reviewVersion = 1.0
+    @AppStorage("review.promptSeen") private var reviewPromptSeen = false
 
     func body(content: Content) -> some View {
         content
             .onAppear {
-                reviewCounter += 1
-                print("Current Review Count: \(reviewCounter)")
+                if reviewPromptSeen {
+                    reviewCounter = 0
+                } else if reviewVersion == 1.0 {
+                    reviewCounter += 1
+                    print("Current Review Count: \(reviewCounter)")
+                } else {
+                    reviewPromptSeen = false
+                }
+                
             }
             .onDisappear {
-                if reviewCounter > 3 {
+                if reviewCounter > 3 && !reviewPromptSeen{
+                    reviewPromptSeen = true
                     reviewCounter = 0
                     DispatchQueue.main.async {
                         #if os(macOS)

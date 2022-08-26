@@ -10,6 +10,7 @@ import SwiftUI
 struct FlagSelectionView: View {
     @EnvironmentObject var appData: AppData
     @EnvironmentObject var navData: NavData
+    @AppStorage("useHaptics") var useHaptics: Bool?
 
     var body: some View {
         GeometryReader { geometry in
@@ -59,7 +60,9 @@ struct FlagSelectionView: View {
                         ForEach(appData.flagsList) { flag in
                                 Button {
                                     appData.selectedFlagName = flag.name
-                                    Haptics.shared.play(.medium)
+                                    if useHaptics ?? true {
+                                        Haptics.shared.play(.medium)
+                                    }
                                 } label: {
                                     ZStack {
                                         Image(flag.image)
@@ -95,7 +98,9 @@ struct FlagSelectionView: View {
                 Button {
                     navData.navigationSelection = "Image Overlay"
                     #if os(iOS)
-                    Haptics.shared.play(.medium)
+                    if useHaptics ?? true {
+                        Haptics.shared.play(.medium)
+                    }
                     #endif
                     //appData.hasImageBeenSelected = false
                 } label: {

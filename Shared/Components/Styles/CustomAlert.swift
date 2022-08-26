@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+#if os(iOS)
+import SSSwiftUIGIFView
+#endif
 
 struct CustomAlert: View {
     @EnvironmentObject var appData: AppData
@@ -47,6 +50,7 @@ struct CustomAlert: View {
                     #else
                     if showingPhotoAlbum {
                         Text("Go to Photo Album!")
+                        
                     } else {
                         Text("Done!")
                     }
@@ -55,11 +59,41 @@ struct CustomAlert: View {
                 }
                 .buttonStyle(StandardButton())
                 .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.05)
+               Spacer()
+                    .frame(height: geometry.size.height * 0.05)
+                #if os(iOS)
+                Button {
+                    func pngFrom(image: UIImage) -> UIImage {
+                        let imageData = image.pngData()!
+                        let imagePng = UIImage(data: imageData)!
+                        return imagePng
+                    }
+                    let image = pngFrom(
+                        image: ImageSaveView(
+                            width: (geometry.size.width < geometry.size.height ? geometry.size.width * 0.8 : geometry.size.height * 0.6),
+                            height: (geometry.size.width < geometry.size.height ? geometry.size.width * 0.8 : geometry.size.height * 0.6)
+                        )
+                        .environmentObject(appData)
+                        .asUiImage()
+                    )
+                    UIPasteboard.general.image = image
+                    showingPhotoAlbum = false
+                } label: {
+                    Text("Copy image to clipboard")
+                }
+                .buttonStyle(StandardButton())
+                .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.05)
+                #endif
                 Spacer()
+                #if os(macOS)
                 Image("Logo_Transparent")
                     .resizable()
                     .scaledToFill()
                     .frame(width: geometry.size.width * 0.3, height: geometry.size.width * 0.3)
+                #else
+                SwiftUIGIFPlayerView(gifName: "Logo_Animated")
+                    .frame(width: geometry.size.width < geometry.size.height ? geometry.size.width * 0.4 : geometry.size.width * 0.3, height: geometry.size.width < geometry.size.height ? geometry.size.width * 0.4 : geometry.size.width * 0.3)
+                #endif
             }
             .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
             .frame(width: geometry.size.width, height: geometry.size.height)
@@ -79,7 +113,9 @@ struct CustomAlert: View {
                 }
             }
             .reviewCounter()
+           
         }
+        
     }
 }
 

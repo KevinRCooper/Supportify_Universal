@@ -6,17 +6,25 @@
 //
 
 import SwiftUI
+#if os(iOS)
+import SSSwiftUIGIFView
+#endif
 
 struct ViewRouter: View {
     @EnvironmentObject var appData: AppData
     @EnvironmentObject var navData: NavData
     @State var showingLaunchScreen: Bool = true
+    @State var imageSize: CGSize = .zero
+    @AppStorage("startAnimation") var startAnimation: Bool?
+    @AppStorage("useHaptics") var useHaptics: Bool?
     #if !os(macOS)
     init() {
         // Haptic Feedback
-        let generator = UIImpactFeedbackGenerator()
-        generator.prepare()
-        generator.impactOccurred(intensity: 0.7)
+        if useHaptics ?? true {
+            let generator = UIImpactFeedbackGenerator()
+            generator.prepare()
+            generator.impactOccurred(intensity: 0.7)
+        }
     }
     #endif
     
@@ -25,23 +33,32 @@ struct ViewRouter: View {
         try? await Task.sleep(nanoseconds: 7_500_000_000)
         showingLaunchScreen = false
     }
-    
+        
     var body: some View {
-        if showingLaunchScreen {
+        if showingLaunchScreen && startAnimation ?? true {
             GeometryReader { geometry in
                 ZStack {
                     HeartsAnimation()
                         .task(delayView)
                     VStack {
-                       Spacer()
+                        #if os(macOS)
                         Image("Logo_Transparent")
                             .resizable()
                             .scaledToFill()
                             .frame(width: geometry.size.width * 0.5, height: geometry.size.height * 0.5)
+                        #else
+                        Spacer()
+                        SwiftUIGIFPlayerView(gifName: "Logo_Animated")
+                            .scaledToFit()
+                            .ignoresSafeArea()
+                            //.frame(width: geometry.size.width * 0.8, height: geometry.size.width * 0.8)
+                            .frame(width: geometry.size.width < geometry.size.height ? geometry.size.width * 0.7 : geometry.size.height * 0.6)
+     
+                        #endif
                     }
                     .edgesIgnoringSafeArea(.bottom)
+                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
                     HeartsAnimation()
-                        .task(delayView)
                     
                 }
                 .onTapGesture {
@@ -90,20 +107,29 @@ struct PortraitViewWrapper: View {
     init() {
         #if !os(macOS)
         UITabBar.appearance().backgroundColor = UIColor(Color("NavigationTab"))
+        UITabBar.appearance().barTintColor = UIColor.purple
         #endif
     }
     var body: some View {
         GeometryReader { geometry in
             TabView (selection: $navData.navigationSelection) {
                 ForEach(navData.navigationItems) { navItem in
-                    navigationViewSelect(view: navItem.name)
-                        .frame(width: geometry.size.width * 0.95, height: geometry.size.height)
-                        .appBackground()
-                        .tabItem {
-                            Label(navItem.name, systemImage: navItem.image)
-                        }
-                        .tag(navItem.name)
+                    if navItem.name != "Home" {
+                        navigationViewSelect(view: navItem.name)
+                            .frame(width: geometry.size.width * 0.95, height: geometry.size.height)
+                            .appBackground()
+                            .tabItem {
+                                Label(navItem.name, systemImage: navItem.image)
+                            }
+                            .tag(navItem.name)
+                    }
+                    
                 }
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gearshape.2.fill")
+                    }
+                    .tag("Settings")
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
@@ -127,24 +153,32 @@ struct LandscapeViewWrapper: View {
                         switch navData.navigationSelection {
                             case "Home":
                                 HomeView()
+                                .transition(.move(edge: .trailing))
                             case "Image Selection":
                                 ImageSelectView()
+                                .transition(.move(edge: .trailing))
                             case "Flag Selection":
                                 FlagSelectionView()
+                                .transition(.move(edge: .trailing))
                             case "Image Overlay":
                                 ImageOverlayView()
+                                .transition(.move(edge: .trailing))
                             case "Review":
                                 ReviewView()
+                                .transition(.move(edge: .trailing))
                             case "Settings":
                                 SettingsView()
+                                .transition(.move(edge: .trailing))
                             default:
                                 HomeView()
+                                .transition(.move(edge: .trailing))
                         }
                         //navigationViewSelect(view: navData.navigationSelection)
                     }
                         .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.95)
                         .environmentObject(appData)
                         .environmentObject(navData)
+                        .animation(.easeInOut(duration: 0.5))
                     Spacer()
                 }
             }
@@ -155,51 +189,6 @@ struct LandscapeViewWrapper: View {
         }
     }
 }
-
-struct StandardButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        GeometryReader { geometry in
-            return configuration.label
-                .padding(4)
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(Color("prideOrange"))
-                .foregroundColor(.white)
-                .font(.title3)
-                .minimumScaleFactor(0.0001)
-                .lineLimit(1)
-                .cornerRadius(16)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(.white, lineWidth: 2)
-                )
-                .opacity(configuration.isPressed ? 0.7 : 1)
-                .scaleEffect(configuration.isPressed ? 0.8 : 1)
-        }
-    }
-}
-
-struct FlagButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        GeometryReader { geometry in
-            return configuration.label
-                .padding(4)
-                .frame(width: geometry.size.height * 0.25, height: geometry.size.height * 0.25)
-                .background(Color("prideOrange"))
-                .foregroundColor(.white)
-                .font(.title3)
-                .minimumScaleFactor(0.0001)
-                .lineLimit(1)
-                .cornerRadius(16)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(.white, lineWidth: 2)
-                )
-                .opacity(configuration.isPressed ? 0.7 : 1)
-                .scaleEffect(configuration.isPressed ? 0.8 : 1)
-        }
-    }
-}
-
 
 struct SideBarView: View {
     @EnvironmentObject var appData: AppData
@@ -249,12 +238,15 @@ struct BottomNavigation: View {
         TabView (selection: $navData.navigationSelection) {
             ForEach(navData.navigationItems) { navItem in
                 navigationViewSelect(view: navItem.name)
+                    .transition(.move(edge: .trailing))
                     .tabItem {
                         Label(navItem.name, systemImage: navItem.image)
                     }
                     .tag(navItem.name)
             }
+            
         }
+        .animation(.easeInOut(duration: 0.5), value: navData.navigationSelection)
     }
 }
 

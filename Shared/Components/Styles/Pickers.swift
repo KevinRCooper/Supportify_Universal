@@ -83,9 +83,5 @@ extension View {
     func pickerStyle() -> some View {
         modifier(PickerModifier())
     }
-    
-//    func addPaddingSaveImage() -> some View {
-//        modifier(AddPaddingSaveImage())
-//    }
 }
 

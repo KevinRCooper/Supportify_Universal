@@ -45,6 +45,8 @@ class AppData: ObservableObject {
     @Published var showingSaveAlert: Bool = false
     // Blur for Alert
     @Published var alertBackgroundViewBlur: Double = 20.0
+    // Counter for Confetti
+    @Published var counter: Int = 0
     
     #if !os(macOS)
     // Photo Picker Source Type

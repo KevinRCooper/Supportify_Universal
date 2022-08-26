@@ -1,0 +1,6 @@
+framework module Pods_Supportify__iOS_ {
+  umbrella header "Pods-Supportify (iOS)-umbrella.h"
+
+  export *
+  module * { export * }
+}

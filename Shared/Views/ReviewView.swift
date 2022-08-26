@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+#if !os(macOS)
+import ConfettiSwiftUI
+#endif
 
 struct ReviewView: View {
     @EnvironmentObject var appData: AppData
     @EnvironmentObject var navData: NavData
     @State var showingSizeOptions: Bool = false
     @State var showingDone: Bool = false
+    @State var counter: Int = 0
+    @AppStorage("useHaptics") var useHaptics: Bool?
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -56,6 +61,10 @@ struct ReviewView: View {
                         saveImage()
                         appData.showingDoneScreen = true
                         #else
+                        if useHaptics ?? true {
+                            Haptics.shared.play(.medium)
+                        }
+                        appData.counter += 1
                         func pngFrom(image: UIImage) -> UIImage {
                             let imageData = image.pngData()!
                             let imagePng = UIImage(data: imageData)!
@@ -97,7 +106,9 @@ struct ReviewView: View {
                         .environmentObject(appData)
                 }
             }
-            
+            #if !os(macOS)
+            .confettiCannon(counter: $appData.counter, num: 50, confettis: [.sfSymbol(symbolName: "heart.fill")], colors: appData.prideColors, confettiSize: 20, rainHeight: 600.0, fadesOut: true, radius: 500.0)
+            #endif
         }
     }
     

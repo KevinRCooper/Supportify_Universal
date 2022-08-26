@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A12B31A28B92AEA00EA44B5 /* LaunchScreenView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A12B31928B92AEA00EA44B5 /* LaunchScreenView.storyboard */; };
 		0A5CBC7728AFDE390024B351 /* SupportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBC6728AFDE380024B351 /* SupportifyApp.swift */; };
 		0A5CBC7828AFDE390024B351 /* SupportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBC6728AFDE380024B351 /* SupportifyApp.swift */; };
 		0A5CBC7928AFDE390024B351 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBC6828AFDE380024B351 /* ContentView.swift */; };
@@ -46,6 +47,9 @@
 		0A5CBD1428B5775A0024B351 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBD1228B5775A0024B351 /* ReviewView.swift */; };
 		0A5CBD1628B5816E0024B351 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBD1528B5816E0024B351 /* CustomAlert.swift */; };
 		0A5CBD1728B5816E0024B351 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBD1528B5816E0024B351 /* CustomAlert.swift */; };
+		0A7E314028B6C3A1003E7C64 /* Logo_Animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0A7E313F28B6C3A1003E7C64 /* Logo_Animated.gif */; };
+		0A7E316A28B81D7D003E7C64 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E316928B81D7D003E7C64 /* Buttons.swift */; };
+		0A7E316B28B81D7D003E7C64 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E316928B81D7D003E7C64 /* Buttons.swift */; };
 		0AFF1F1928B68915006DB3B4 /* ReviewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF1F1828B68915006DB3B4 /* ReviewHandler.swift */; };
 		0AFF1F1A28B68915006DB3B4 /* ReviewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF1F1828B68915006DB3B4 /* ReviewHandler.swift */; };
 		0AFF1F1C28B6A67A006DB3B4 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF1F1B28B6A67A006DB3B4 /* HapticFeedback.swift */; };
@@ -53,9 +57,13 @@
 		0AFF1F1F28B6AA0B006DB3B4 /* HeartsAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF1F1D28B6AA0B006DB3B4 /* HeartsAnimation.swift */; };
 		0AFF1F2128B6AD9D006DB3B4 /* ScreenSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF1F2028B6AD9D006DB3B4 /* ScreenSizing.swift */; };
 		0AFF1F2228B6AD9D006DB3B4 /* ScreenSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF1F2028B6AD9D006DB3B4 /* ScreenSizing.swift */; };
+		0AFF1F2828B6B839006DB3B4 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0AFF1F2728B6B839006DB3B4 /* ConfettiSwiftUI */; };
+		CFBDCC5CC11C664AA4C7B108 /* Pods_Supportify__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1F957075C2E33578FD7C86 /* Pods_Supportify__iOS_.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A12B31828B9296100EA44B5 /* Supportify--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Supportify--iOS--Info.plist"; sourceTree = "<group>"; };
+		0A12B31928B92AEA00EA44B5 /* LaunchScreenView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenView.storyboard; sourceTree = "<group>"; };
 		0A5CBC6728AFDE380024B351 /* SupportifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportifyApp.swift; sourceTree = "<group>"; };
 		0A5CBC6828AFDE380024B351 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0A5CBC6928AFDE390024B351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,10 +88,15 @@
 		0A5CBCC128B3FE470024B351 /* Pickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pickers.swift; sourceTree = "<group>"; };
 		0A5CBD1228B5775A0024B351 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		0A5CBD1528B5816E0024B351 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		0A7E313F28B6C3A1003E7C64 /* Logo_Animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Logo_Animated.gif; sourceTree = "<group>"; };
+		0A7E316928B81D7D003E7C64 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		0AFF1F1828B68915006DB3B4 /* ReviewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewHandler.swift; sourceTree = "<group>"; };
 		0AFF1F1B28B6A67A006DB3B4 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		0AFF1F1D28B6AA0B006DB3B4 /* HeartsAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsAnimation.swift; sourceTree = "<group>"; };
 		0AFF1F2028B6AD9D006DB3B4 /* ScreenSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizing.swift; sourceTree = "<group>"; };
+		87673B1B3003A89433342703 /* Pods-Supportify (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Supportify (iOS).release.xcconfig"; path = "Target Support Files/Pods-Supportify (iOS)/Pods-Supportify (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		8A79EFE5ABDC17D07D4956C5 /* Pods-Supportify (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Supportify (iOS).debug.xcconfig"; path = "Target Support Files/Pods-Supportify (iOS)/Pods-Supportify (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		9B1F957075C2E33578FD7C86 /* Pods_Supportify__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Supportify__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AFF1F2828B6B839006DB3B4 /* ConfettiSwiftUI in Frameworks */,
+				CFBDCC5CC11C664AA4C7B108 /* Pods_Supportify__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,9 +122,13 @@
 		0A5CBC6128AFDE370024B351 = {
 			isa = PBXGroup;
 			children = (
+				0A12B31828B9296100EA44B5 /* Supportify--iOS--Info.plist */,
+				0A12B31928B92AEA00EA44B5 /* LaunchScreenView.storyboard */,
 				0A5CBC6628AFDE380024B351 /* Shared */,
 				0A5CBC7528AFDE390024B351 /* macOS */,
 				0A5CBC6F28AFDE390024B351 /* Products */,
+				72CFCF4B3EFE4DFA50770AEC /* Pods */,
+				29DE6F7146A833C4709AFCF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +140,7 @@
 				0A5CBC8728AFDE710024B351 /* Models */,
 				0A5CBC8528AFDE5F0024B351 /* Views */,
 				0A5CBC8628AFDE650024B351 /* Components */,
+				0A7E313E28B6C367003E7C64 /* Image_Assets */,
 				0A5CBC6928AFDE390024B351 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -151,9 +171,9 @@
 				0A5CBC9F28B004020024B351 /* HomeView.swift */,
 				0A5CBCA228B004400024B351 /* ImageSelectView.swift */,
 				0A5CBCB228B067E20024B351 /* FlagSelectionView.swift */,
-				0A5CBCB528B068000024B351 /* SettingsView.swift */,
 				0A5CBCBE28B3FAB40024B351 /* ImageOverlayView.swift */,
 				0A5CBD1228B5775A0024B351 /* ReviewView.swift */,
+				0A5CBCB528B068000024B351 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,6 +197,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		0A7E313E28B6C367003E7C64 /* Image_Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0A7E313F28B6C3A1003E7C64 /* Logo_Animated.gif */,
+			);
+			path = Image_Assets;
+			sourceTree = "<group>";
+		};
 		0AFF1F2328B6B04D006DB3B4 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +214,7 @@
 				0A5CBCC128B3FE470024B351 /* Pickers.swift */,
 				0A5CBD1528B5816E0024B351 /* CustomAlert.swift */,
 				0AFF1F1D28B6AA0B006DB3B4 /* HeartsAnimation.swift */,
+				0A7E316928B81D7D003E7C64 /* Buttons.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -210,6 +239,23 @@
 			path = "Device Handling";
 			sourceTree = "<group>";
 		};
+		29DE6F7146A833C4709AFCF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B1F957075C2E33578FD7C86 /* Pods_Supportify__iOS_.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		72CFCF4B3EFE4DFA50770AEC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A79EFE5ABDC17D07D4956C5 /* Pods-Supportify (iOS).debug.xcconfig */,
+				87673B1B3003A89433342703 /* Pods-Supportify (iOS).release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -217,15 +263,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A5CBC7F28AFDE390024B351 /* Build configuration list for PBXNativeTarget "Supportify (iOS)" */;
 			buildPhases = (
+				5533E6F63A9B2E9B57AFE036 /* [CP] Check Pods Manifest.lock */,
 				0A5CBC6A28AFDE390024B351 /* Sources */,
 				0A5CBC6B28AFDE390024B351 /* Frameworks */,
 				0A5CBC6C28AFDE390024B351 /* Resources */,
+				793FFCF7EA14BA7BB011B79E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Supportify (iOS)";
+			packageProductDependencies = (
+				0AFF1F2728B6B839006DB3B4 /* ConfettiSwiftUI */,
+			);
 			productName = "Supportify (iOS)";
 			productReference = 0A5CBC6E28AFDE390024B351 /* Supportify.app */;
 			productType = "com.apple.product-type.application";
@@ -274,6 +325,9 @@
 				Base,
 			);
 			mainGroup = 0A5CBC6128AFDE370024B351;
+			packageReferences = (
+				0AFF1F2628B6B839006DB3B4 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+			);
 			productRefGroup = 0A5CBC6F28AFDE390024B351 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -289,6 +343,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A12B31A28B92AEA00EA44B5 /* LaunchScreenView.storyboard in Resources */,
+				0A7E314028B6C3A1003E7C64 /* Logo_Animated.gif in Resources */,
 				0A5CBC7B28AFDE390024B351 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +358,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5533E6F63A9B2E9B57AFE036 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Supportify (iOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		793FFCF7EA14BA7BB011B79E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Supportify (iOS)/Pods-Supportify (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Supportify (iOS)/Pods-Supportify (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Supportify (iOS)/Pods-Supportify (iOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0A5CBC6A28AFDE390024B351 /* Sources */ = {
@@ -323,6 +421,7 @@
 				0A5CBCAB28B012500024B351 /* ImageOverlayWrapper.swift in Sources */,
 				0A5CBD1328B5775A0024B351 /* ReviewView.swift in Sources */,
 				0A5CBC9228AFF2230024B351 /* NavData.swift in Sources */,
+				0A7E316A28B81D7D003E7C64 /* Buttons.swift in Sources */,
 				0A5CBC8C28AFDEB50024B351 /* ViewRouter.swift in Sources */,
 				0A5CBC9D28AFFF750024B351 /* Banner.swift in Sources */,
 				0A5CBCC228B3FE470024B351 /* Pickers.swift in Sources */,
@@ -341,6 +440,7 @@
 				0A5CBC7A28AFDE390024B351 /* ContentView.swift in Sources */,
 				0AFF1F2228B6AD9D006DB3B4 /* ScreenSizing.swift in Sources */,
 				0A5CBC7828AFDE390024B351 /* SupportifyApp.swift in Sources */,
+				0A7E316B28B81D7D003E7C64 /* Buttons.swift in Sources */,
 				0A5CBC8A28AFDE960024B351 /* Background.swift in Sources */,
 				0A5CBD1728B5816E0024B351 /* CustomAlert.swift in Sources */,
 				0A5CBCB128B02D5D0024B351 /* NavigationSideBarView.swift in Sources */,
@@ -476,6 +576,7 @@
 		};
 		0A5CBC8028AFDE390024B351 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A79EFE5ABDC17D07D4956C5 /* Pods-Supportify (iOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -484,11 +585,13 @@
 				DEVELOPMENT_TEAM = 9RLLX77LQX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_FILE = "Supportify--iOS--Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used to take a photo to use as your profile image";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Used to import a photo to use as your profile image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
@@ -508,6 +611,7 @@
 		};
 		0A5CBC8128AFDE390024B351 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87673B1B3003A89433342703 /* Pods-Supportify (iOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -516,11 +620,13 @@
 				DEVELOPMENT_TEAM = 9RLLX77LQX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_FILE = "Supportify--iOS--Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used to take a photo to use as your profile image";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Used to import a photo to use as your profile image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
@@ -626,6 +732,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0AFF1F2628B6B839006DB3B4 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0AFF1F2728B6B839006DB3B4 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AFF1F2628B6B839006DB3B4 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0A5CBC6228AFDE370024B351 /* Project object */;
 }

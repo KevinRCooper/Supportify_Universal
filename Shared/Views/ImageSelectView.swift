@@ -10,9 +10,9 @@ import SwiftUI
 struct ImageSelectView: View {
     @EnvironmentObject var appData: AppData
     @EnvironmentObject var navData: NavData
-    //@State var hasImageBeenSelected: Bool = false
     @State var isImagePickerDisplay = false
     @State private var isShowingImageSelectView = false
+    @AppStorage("useHaptics") var useHaptics: Bool?
     var body: some View {
         GeometryReader { geometry in
             VStack (alignment: .center){
@@ -54,8 +54,9 @@ struct ImageSelectView: View {
                             appData.sourceType = .camera
                             self.isImagePickerDisplay.toggle()
                             appData.hasImageBeenSelected = true
-
-                            Haptics.shared.play(.medium)
+                            if useHaptics ?? true {
+                                Haptics.shared.play(.medium)
+                            }
                         } label: {
                             Text("Take Photo \(Image(systemName: "camera.viewfinder"))")
                         }
@@ -65,7 +66,9 @@ struct ImageSelectView: View {
                             appData.sourceType = .photoLibrary
                             self.isImagePickerDisplay.toggle()
                             appData.hasImageBeenSelected = true
-                            Haptics.shared.play(.medium)
+                            if useHaptics ?? true {
+                                Haptics.shared.play(.medium)
+                            }
                         } label: {
                             Text("Upload Photo \(Image(systemName: "camera.viewfinder"))")
                         }
@@ -86,7 +89,9 @@ struct ImageSelectView: View {
                         Button {
                             navData.navigationSelection = "Flag Selection"
                             #if os(iOS)
-                            Haptics.shared.play(.medium)
+                            if useHaptics ?? true {
+                                Haptics.shared.play(.medium)
+                            }
                             #endif
                         } label: {
                             Text("Select Flag Overlay \(Image(systemName: "arrow.forward.circle"))")

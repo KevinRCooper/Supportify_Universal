@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+#if os(iOS)
+import SSSwiftUIGIFView
+#endif
 
 struct ImageOverlayWrapper: View {
     @EnvironmentObject var appData: AppData
@@ -13,6 +16,7 @@ struct ImageOverlayWrapper: View {
     @GestureState var startLocation: CGPoint? = nil
     @GestureState var magnifyBy = 1.0
     @State private var lastScale: Double = 1.0
+    @AppStorage("animatedLogo") var usingAnimatedLogo: Bool?
     
     // Pinch Zoom
     var magnification: some Gesture {
@@ -90,17 +94,43 @@ struct ImageOverlayWrapper: View {
                     
                 #else
                 ZStack {
-                    Image(uiImage: (appData.selectedImage != nil ? appData.selectedImage : UIImage(named: "Logo_Transparent"))!)
-                        .resizable()
-                        .scaledToFill()
-                        .scaleEffect(appData.zoomLevel)
-                        .position(appData.location ?? CGPoint(x: geometry.size.width * 0.5, y: geometry.size.height * 0.5))
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                        .fixedSize()
-                        .clipShape(Circle())
-                        .onChange(of: geometry.size) { _ in
-                            appData.location = CGPoint(x: geometry.size.width * 0.5, y: geometry.size.height * 0.5)
+                    if appData.hasImageBeenSelected {
+                        Image(uiImage: (appData.selectedImage != nil ? appData.selectedImage : UIImage(named: "Logo_Transparent"))!)
+                            .resizable()
+                            .scaledToFill()
+                            .scaleEffect(appData.zoomLevel)
+                            .position(appData.location ?? CGPoint(x: geometry.size.width * 0.5, y: geometry.size.height * 0.5))
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .fixedSize()
+                            .clipShape(Circle())
+                            .onChange(of: geometry.size) { _ in
+                                appData.location = CGPoint(x: geometry.size.width * 0.5, y: geometry.size.height * 0.5)
+                            }
+                    } else {
+                        if usingAnimatedLogo ?? false {
+                            SwiftUIGIFPlayerView(gifName: "Logo_Animated")
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .fixedSize()
+                            .clipShape(Circle())
+                            .onChange(of: geometry.size) { _ in
+                                appData.location = CGPoint(x: geometry.size.width * 0.5, y: geometry.size.height * 0.5)
+                            }
+                        } else {
+                            Image("Logo_Transparent")
+                                .resizable()
+                                .scaledToFill()
+                                .scaleEffect(appData.zoomLevel)
+                                .position(appData.location ?? CGPoint(x: geometry.size.width * 0.5, y: geometry.size.height * 0.5))
+                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .fixedSize()
+                                .clipShape(Circle())
+                                .onChange(of: geometry.size) { _ in
+                                    appData.location = CGPoint(x: geometry.size.width * 0.5, y: geometry.size.height * 0.5)
+                                }
                         }
+                            
+                    }
+                    
                 }
                 .contentShape(Circle())
                 .gesture(MagnificationGesture()
@@ -178,7 +208,7 @@ func colorCount(appData: AppData, width: CGFloat) -> CGFloat {
     let colorArray = appData.getPrideFlagColors(selection: appData.selectedFlagName, type: "")
     let count = colorArray.count
     let newWidth = ((Float(100) / Float(count)) / Float(100))
-    return (CGFloat(width) * CGFloat(newWidth)) - 7
+    return (CGFloat(width) * CGFloat(newWidth)) - 5
 }
 
 struct TextDisplay: View {

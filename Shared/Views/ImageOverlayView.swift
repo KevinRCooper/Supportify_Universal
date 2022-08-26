@@ -10,13 +10,14 @@ import SwiftUI
 struct ImageOverlayView: View {
     @EnvironmentObject var appData: AppData
     @EnvironmentObject var navData: NavData
+    @AppStorage("useHaptics") var useHaptics: Bool?
     var body: some View {
         GeometryReader { geometry in
             VStack (alignment: .center){
                 #if !os(macOS)
                 if UIDevice.isiPhone {
                     Spacer()
-                        .frame(height: geometry.size.height * 0.05)
+                        //.frame(height: geometry.size.height * 0.05)
                 }
                 
                 #endif
@@ -24,18 +25,14 @@ struct ImageOverlayView: View {
                 VStack {
                     Banner(title: "Image Overlay")
                 }
-                .frame(width: geometry.size.width, height: geometry.size.height * 0.1)
+                .frame(width: geometry.size.width, height: geometry.size.height * 0.05)
                 // Profile Image View
                 Spacer()
                 ImageOverlayWrapper()
                     .frame(width: (geometry.size.width < geometry.size.height ? geometry.size.width * 0.8 : geometry.size.height * 0.6), height: (geometry.size.width < geometry.size.height ? geometry.size.width * 0.8 : geometry.size.height * 0.6))
-//                #if os(macOS)
-//                    .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.6)
-//                #else
-//                    .frame(width: geometry.size.width * (UIDevice.isIpad ? 0.5 : 0.9), height: geometry.size.height * (geometry.size.width > geometry.size.height ? 0.4 : 0.4))
-//                #endif
+
                 Spacer()
-                    .frame(height: geometry.size.height * 0.05)
+                    .frame(height: geometry.size.height * 0.07)
                 // Overlay Options
                 VStack {
                     // Overlay Type
@@ -45,7 +42,7 @@ struct ImageOverlayView: View {
                         }
                     }
                     .pickerStyle()
-                    .frame(width: geometry.size.width * 0.75)
+                    .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.05)
                     
                     // Displays Text Overlay if Applicable
                     if appData.imageDisplay == "Banner" {
@@ -74,6 +71,11 @@ struct ImageOverlayView: View {
                     // Review
                     Button {
                         navData.navigationSelection = "Review"
+                        #if os(iOS)
+                        if useHaptics ?? true {
+                            Haptics.shared.play(.medium)
+                        }
+                        #endif
                     } label: {
                         Text("Review Image & Save")
                     }
@@ -82,6 +84,7 @@ struct ImageOverlayView: View {
                 }
                 .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.20)
                 Spacer()
+                    //.frame(height: geometry.size.height * 0.05)
             }
             .appBackground()
             .onAppear() {

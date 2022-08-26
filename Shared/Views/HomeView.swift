@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
-
+#if !os(macOS)
+import SSSwiftUIGIFView
+#endif
 struct HomeView: View {
     @EnvironmentObject var appData: AppData
     @EnvironmentObject var navData: NavData
+    @AppStorage("useHaptics") var useHaptics: Bool?
     
     var body: some View {
         GeometryReader { geometry in
@@ -35,10 +38,13 @@ struct HomeView: View {
                 Button {
                     navData.navigationSelection = "Image Selection"
                     #if os(iOS)
-                    Haptics.shared.play(.medium)
+                    if useHaptics ?? true {
+                        Haptics.shared.play(.medium)
+                    }
                     #endif
                 } label: {
                     Text("Select an Image")
+                   
                 }
                 .buttonStyle(StandardButton())
                 .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.05)
