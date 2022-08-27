@@ -35,70 +35,72 @@ struct ViewRouter: View {
     }
         
     var body: some View {
-        if showingLaunchScreen && startAnimation ?? true {
-            GeometryReader { geometry in
-                ZStack {
-                    HeartsAnimation()
-                        .task(delayView)
-                    VStack {
-                        #if os(macOS)
-                        Image("Logo_Transparent")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: geometry.size.width * 0.5, height: geometry.size.height * 0.5)
-                        #else
-                        Spacer()
-                        SwiftUIGIFPlayerView(gifName: "Logo_Animated")
-                            .scaledToFit()
-                            .ignoresSafeArea()
-                            //.frame(width: geometry.size.width * 0.8, height: geometry.size.width * 0.8)
-                            .frame(width: geometry.size.width < geometry.size.height ? geometry.size.width * 0.7 : geometry.size.height * 0.6)
-     
+        if appData.showingPromotional {
+            PromotionalView()
+        } else {
+            if showingLaunchScreen && startAnimation ?? true {
+                GeometryReader { geometry in
+                    ZStack {
+                        HeartsAnimation()
+                            .task(delayView)
+                        VStack {
+                            #if os(macOS)
+                            Image("Logo_Transparent")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: geometry.size.width * 0.5, height: geometry.size.height * 0.5)
+                            #else
+                            Spacer()
+                            SwiftUIGIFPlayerView(gifName: "Logo_Animated")
+                                .scaledToFit()
+                                .ignoresSafeArea()
+                                //.frame(width: geometry.size.width * 0.8, height: geometry.size.width * 0.8)
+                                .frame(width: geometry.size.width < geometry.size.height ? geometry.size.width * 0.7 : geometry.size.height * 0.6)
+         
+                            #endif
+                        }
+                        .edgesIgnoringSafeArea(.bottom)
+                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
+                        HeartsAnimation()
+                        
+                    }
+                    .onTapGesture {
+                        showingLaunchScreen = false
+                        #if os(iOS)
+                        Haptics.shared.play(.medium)
                         #endif
                     }
-                    .edgesIgnoringSafeArea(.bottom)
-                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
-                    HeartsAnimation()
-                    
+                    .appBackground()
                 }
-                .onTapGesture {
-                    showingLaunchScreen = false
-                    #if os(iOS)
-                    Haptics.shared.play(.medium)
-                    #endif
-                }
-                .appBackground()
-            }
-            
-        } else {
-            GeometryReader { geometry in
-                ZStack {
-                    #if os(macOS)
-                    LandscapeViewWrapper()
-                        .environmentObject(appData)
-                        .environmentObject(navData)
-                    #else
-                    if UIDevice.isIpad && geometry.size.width > geometry.size.height {
+                
+            } else {
+                GeometryReader { geometry in
+                    ZStack {
+                        #if os(macOS)
                         LandscapeViewWrapper()
                             .environmentObject(appData)
                             .environmentObject(navData)
-                    } else {
-                        PortraitViewWrapper()
-                            .environmentObject(appData)
-                            .environmentObject(navData)
+                        #else
+                        if UIDevice.isIpad && geometry.size.width > geometry.size.height {
+                            LandscapeViewWrapper()
+                                .environmentObject(appData)
+                                .environmentObject(navData)
+                        } else {
+                            PortraitViewWrapper()
+                                .environmentObject(appData)
+                                .environmentObject(navData)
+                        }
+                        #endif
                     }
-                    #endif
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .onAppear() {
+                        print("Refreshed View!")
+                    }
+                    
+                    .appBackground()
                 }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .onAppear() {
-                    print("Refreshed View!")
-                }
-                
-                .appBackground()
             }
         }
-       
-        
     }
 }
 struct PortraitViewWrapper: View {
@@ -112,26 +114,31 @@ struct PortraitViewWrapper: View {
     }
     var body: some View {
         GeometryReader { geometry in
-            TabView (selection: $navData.navigationSelection) {
-                ForEach(navData.navigationItems) { navItem in
-                    if navItem.name != "Home" {
-                        navigationViewSelect(view: navItem.name)
-                            .frame(width: geometry.size.width * 0.95, height: geometry.size.height)
-                            .appBackground()
-                            .tabItem {
-                                Label(navItem.name, systemImage: navItem.image)
-                            }
-                            .tag(navItem.name)
+            if appData.showingPromotional {
+                PromotionalView()
+            } else {
+                TabView (selection: $navData.navigationSelection) {
+                    ForEach(navData.navigationItems) { navItem in
+                        if navItem.name != "Home" {
+                            navigationViewSelect(view: navItem.name)
+                                .frame(width: geometry.size.width * 0.95, height: geometry.size.height)
+                                .appBackground()
+                                .tabItem {
+                                    Label(navItem.name, systemImage: navItem.image)
+                                }
+                                .tag(navItem.name)
+                        }
+                        
                     }
-                    
+                    SettingsView()
+                        .tabItem {
+                            Label("Settings", systemImage: "gearshape.2.fill")
+                        }
+                        .tag("Settings")
                 }
-                SettingsView()
-                    .tabItem {
-                        Label("Settings", systemImage: "gearshape.2.fill")
-                    }
-                    .tag("Settings")
+                .frame(width: geometry.size.width, height: geometry.size.height)
             }
-            .frame(width: geometry.size.width, height: geometry.size.height)
+            
         }
         .appBackground()
     }

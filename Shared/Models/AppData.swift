@@ -8,6 +8,7 @@
 import SwiftUI
 
 class AppData: ObservableObject {
+    @Published var showingPromotional: Bool = false
     // MARK: - Navigation
     @Published var showingNavBar: Bool = true
     // Tracks if side-bar navigation is loaded to fix the text preview

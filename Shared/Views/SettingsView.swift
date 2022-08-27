@@ -6,81 +6,72 @@
 //
 
 import SwiftUI
-
-struct SettingsView2: View {
+#if os(macOS)
+struct SettingsView: View {
     @EnvironmentObject var appData: AppData
     @EnvironmentObject var navData: NavData
     @AppStorage("startAnimation") var startAnimation = true
     @AppStorage("animatedLogo") var usingAnimatedLogo = false
     @AppStorage("useHaptics") var useHaptics = true
-    @AppStorage("developer") var developer = false
+    @AppStorage("developer") private var developer = false
     @AppStorage("review.counter") private var reviewCounter = 0
     @AppStorage("review.version") private var reviewVersion = 1.0
     @AppStorage("review.promptSeen") private var reviewPromptSeen = false
-    
-    #if !os(macOS)
-    init(){
-           UITableView.appearance().backgroundColor = .clear
-       }
-    #endif
-    
     var body: some View {
         GeometryReader { geometry in
-            HStack {
-                Spacer()
-                    .frame(width: geometry.size.width * 0.05)
-                VStack (alignment: .leading){
-                    // Title
-                    HStack {
-                        Text("Settings")
-                            .font(Font.largeTitle.weight(.bold))
-                            .foregroundColor(.white)
-                        Spacer()
-                    }
-                    // Form
-                    List {
-                        Section {
-                            Toggle(isOn: $startAnimation) {
-                                Text("Show start animation?")
-                            }
-                            #if os(iOS)
-                            Toggle(isOn: $usingAnimatedLogo) {
-                                Text("Show animated images?")
-                            }
-                            Toggle(isOn: $useHaptics) {
-                                Text("Use haptic feedback?")
-                            }
-                            #endif
-                            Section(header: Text("Support")) {
-                                Link("Join our Discord", destination: URL(string: "https://discord.gg/cKrcv8mmRE")!)
-                            }
-                        } header: {
-                            Text("App Behavior")
-                                .foregroundColor(.white)
+            VStack {
+                // Banner
+                HStack {
+                    Banner(title: "Settings")
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                // Settings Content
+                // App Behavior
+                List {
+                    Section {
+                        Toggle(isOn: $startAnimation) {
+                            Text("Show start animation?")
                         }
-                        Section {
-                            Toggle(isOn: $developer) {
-                                Text("Show developer information?")
-                            }
-                            if developer {
-                                Text("Developer Information: Created by Kevin Cooper")
-                                Text("Build: Supportify Univerval 1.0")
-                                Link("GitHub Project (Open Source MIT License)", destination: URL(string: "https://github.com/NotEnoughCoffee/Supportify_Universal")!)
-                                Text("Review Counter: \(reviewCounter) | User seen review prompt? \(reviewPromptSeen ? "Yes" : "No")")
-                            }
-                        } header: {
-                            Text("Developer")
-                                .foregroundColor(.white)
-                        }
+                        .toggleStyle(.switch)
+                    } header: {
+                        Text("App Bahvior")
                     }
                 }
-                Spacer()
-                    .frame(width: geometry.size.width * 0.05)
+                // Support
+                List {
+                    Section {
+                        Link("Join our Discord", destination: URL(string: "https://discord.gg/cKrcv8mmRE")!)
+                    } header: {
+                        Text("Support")
+                    }
+                }
+                // Developer
+                List {
+                    Section {
+                        Toggle(isOn: $developer) {
+                            Text("Show developer information?")
+                        }
+                        .toggleStyle(.switch)
+                        if developer {
+                            Text("Developer Information: Created by Kevin Cooper")
+                            Text("Build: Supportify Univerval 1.0")
+                            Link("GitHub Project (Open Source MIT License)", destination: URL(string: "https://github.com/NotEnoughCoffee/Supportify_Universal")!)
+                            Text("Review Counter: \(reviewCounter) | User seen review prompt? \(reviewPromptSeen ? "Yes" : "No")")
+                        }
+                    } header: {
+                        Text("Developer")
+                    }
+                }
             }
-            .frame(width: geometry.size.width, height: geometry.size.height)
+            .padding()
+            .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.75)
+            .background(Color("DarkGray"))
+            .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
         }
     }
 }
+#else
 
 struct SettingsView: View {
     @EnvironmentObject var appData: AppData
@@ -90,8 +81,9 @@ struct SettingsView: View {
     @AppStorage("useHaptics") var useHaptics = true
     @AppStorage("developer") var developer = false
     @AppStorage("review.counter") private var reviewCounter = 0
-    @AppStorage("review.version") private var reviewVersion = 1.0
+    @AppStorage("review.version") private var reviewVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
     @AppStorage("review.promptSeen") private var reviewPromptSeen = false
+    
     
     #if !os(macOS)
     init(){
@@ -120,14 +112,12 @@ struct SettingsView: View {
                             Toggle(isOn: $startAnimation) {
                                 Text("Show start animation?")
                             }
-                            #if os(iOS)
                             Toggle(isOn: $usingAnimatedLogo) {
                                 Text("Show animated images?")
                             }
                             Toggle(isOn: $useHaptics) {
                                 Text("Use haptic feedback?")
                             }
-                            #endif
                         } header: {
                             Text("App Bahavior")
                                 .foregroundColor(.white)
@@ -144,9 +134,14 @@ struct SettingsView: View {
                         }
                         if developer {
                             Text("Developer Information: Created by Kevin Cooper")
-                            Text("Build: Supportify Univerval 1.0")
+                            Text("Build: Supportify Universal \(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "")")
                             Link("GitHub Project (Open Source MIT License)", destination: URL(string: "https://github.com/NotEnoughCoffee/Supportify_Universal")!)
                             Text("Review Counter: \(reviewCounter) | User seen review prompt? \(reviewPromptSeen ? "Yes" : "No")")
+//                            Button {
+//                                appData.showingPromotional = true
+//                            } label: {
+//                                Text("Show Promotional Page")
+//                            }
                         }
                         
                     }
@@ -157,13 +152,10 @@ struct SettingsView: View {
                 .frame(width: 20)
         }
         .frame(width: .infinity, height: .infinity)
-        #if os(macOS)
-        .background(Color.black)
-        #else
         .appBackground()
-        #endif
     }
 }
+#endif
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {

@@ -14,7 +14,7 @@ import SwiftUI
 struct ReviewCounter: ViewModifier {
     /// Counter of events that would lead to a review being asked for.
     @AppStorage("review.counter") private var reviewCounter = 0
-    @AppStorage("review.version") private var reviewVersion = 1.0
+    @AppStorage("review.version") private var reviewVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
     @AppStorage("review.promptSeen") private var reviewPromptSeen = false
 
     func body(content: Content) -> some View {
@@ -22,10 +22,11 @@ struct ReviewCounter: ViewModifier {
             .onAppear {
                 if reviewPromptSeen {
                     reviewCounter = 0
-                } else if reviewVersion == 1.0 {
+                } else if reviewVersion == Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "" {
                     reviewCounter += 1
                     print("Current Review Count: \(reviewCounter)")
                 } else {
+                    reviewVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
                     reviewPromptSeen = false
                 }
                 

@@ -14,7 +14,8 @@ class NavData: ObservableObject {
         NavItem(name: NSLocalizedString("Image Selection", comment: ""), image: "photo.on.rectangle.angled"),
         NavItem(name: NSLocalizedString("Flag Selection", comment: ""), image: "flag.fill"),
         NavItem(name: NSLocalizedString("Image Overlay", comment: ""), image: "person.circle"),
-        NavItem(name: NSLocalizedString("Review", comment: ""), image: "square.and.arrow.down.fill")
+        NavItem(name: NSLocalizedString("Review", comment: ""), image: "square.and.arrow.down.fill"),
+        //NavItem(name: NSLocalizedString("Promotional", comment: ""), image: "square.and.arrow.down.fill")
     ]
     @Published var navigationSelection: String = "Home"
 }
@@ -37,6 +38,8 @@ struct NavItem: Identifiable {
         ImageOverlayView()
     case "Review":
         ReviewView()
+    case "Promotional":
+        PromotionalView()
     default:
         EmptyView()
     }

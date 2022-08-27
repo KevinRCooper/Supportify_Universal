@@ -31,13 +31,13 @@
       "size" : "40x40"
     },
     {
-      "filename" : "120.png",
+      "filename" : "120-1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "120-1.png",
+      "filename" : "120.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
@@ -106,6 +106,71 @@
       "filename" : "1024.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
+      "size" : "1024x1024"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024_50_1_50_1_50_1_50_1_50_1_50.png",
+      "idiom" : "mac",
+      "scale" : "1x",
+      "size" : "16x16"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024_50_1_50_1_50_1_50_1_50-1.png",
+      "idiom" : "mac",
+      "scale" : "2x",
+      "size" : "16x16"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024_50_1_50_1_50_1_50_1_50.png",
+      "idiom" : "mac",
+      "scale" : "1x",
+      "size" : "32x32"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024_50_1_50_1_50_1_50.png",
+      "idiom" : "mac",
+      "scale" : "2x",
+      "size" : "32x32"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024_50_1_50_1_50.png",
+      "idiom" : "mac",
+      "scale" : "1x",
+      "size" : "128x128"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024_50_1_50-1.png",
+      "idiom" : "mac",
+      "scale" : "2x",
+      "size" : "128x128"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024_50_1_50.png",
+      "idiom" : "mac",
+      "scale" : "1x",
+      "size" : "256x256"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024_50-1.png",
+      "idiom" : "mac",
+      "scale" : "2x",
+      "size" : "256x256"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024_50.png",
+      "idiom" : "mac",
+      "scale" : "1x",
+      "size" : "512x512"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024-1.png",
+      "idiom" : "mac",
+      "scale" : "2x",
+      "size" : "512x512"
+    },
+    {
+      "filename" : "SupportifyAppIcon1024.png",
+      "idiom" : "mac",
       "size" : "1024x1024"
     }
   ],

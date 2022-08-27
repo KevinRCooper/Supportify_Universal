@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A12B31A28B92AEA00EA44B5 /* LaunchScreenView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A12B31928B92AEA00EA44B5 /* LaunchScreenView.storyboard */; };
+		0A12B31C28B9557300EA44B5 /* PromotionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A12B31B28B9557300EA44B5 /* PromotionalView.swift */; };
+		0A12B31D28B9557300EA44B5 /* PromotionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A12B31B28B9557300EA44B5 /* PromotionalView.swift */; };
 		0A5CBC7728AFDE390024B351 /* SupportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBC6728AFDE380024B351 /* SupportifyApp.swift */; };
 		0A5CBC7828AFDE390024B351 /* SupportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBC6728AFDE380024B351 /* SupportifyApp.swift */; };
 		0A5CBC7928AFDE390024B351 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBC6828AFDE380024B351 /* ContentView.swift */; };
@@ -64,6 +66,7 @@
 /* Begin PBXFileReference section */
 		0A12B31828B9296100EA44B5 /* Supportify--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Supportify--iOS--Info.plist"; sourceTree = "<group>"; };
 		0A12B31928B92AEA00EA44B5 /* LaunchScreenView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenView.storyboard; sourceTree = "<group>"; };
+		0A12B31B28B9557300EA44B5 /* PromotionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionalView.swift; sourceTree = "<group>"; };
 		0A5CBC6728AFDE380024B351 /* SupportifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportifyApp.swift; sourceTree = "<group>"; };
 		0A5CBC6828AFDE380024B351 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0A5CBC6928AFDE390024B351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 				0A5CBCBE28B3FAB40024B351 /* ImageOverlayView.swift */,
 				0A5CBD1228B5775A0024B351 /* ReviewView.swift */,
 				0A5CBCB528B068000024B351 /* SettingsView.swift */,
+				0A12B31B28B9557300EA44B5 /* PromotionalView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -423,6 +427,7 @@
 				0A5CBC9228AFF2230024B351 /* NavData.swift in Sources */,
 				0A7E316A28B81D7D003E7C64 /* Buttons.swift in Sources */,
 				0A5CBC8C28AFDEB50024B351 /* ViewRouter.swift in Sources */,
+				0A12B31C28B9557300EA44B5 /* PromotionalView.swift in Sources */,
 				0A5CBC9D28AFFF750024B351 /* Banner.swift in Sources */,
 				0A5CBCC228B3FE470024B351 /* Pickers.swift in Sources */,
 				0A5CBC9828AFFC6E0024B351 /* Device.swift in Sources */,
@@ -458,6 +463,7 @@
 				0A5CBCAE28B013DA0024B351 /* ImageUploadMacOS.swift in Sources */,
 				0A5CBD1428B5775A0024B351 /* ReviewView.swift in Sources */,
 				0A5CBCAC28B012500024B351 /* ImageOverlayWrapper.swift in Sources */,
+				0A12B31D28B9557300EA44B5 /* PromotionalView.swift in Sources */,
 				0A5CBC9028AFE2200024B351 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,7 +587,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9RLLX77LQX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -593,13 +599,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.KevinCooper.Supportify;
 				PRODUCT_NAME = Supportify;
 				SDKROOT = iphoneos;
@@ -616,7 +622,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9RLLX77LQX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -628,13 +634,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.KevinCooper.Supportify;
 				PRODUCT_NAME = Supportify;
 				SDKROOT = iphoneos;
@@ -658,6 +664,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -686,6 +693,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
